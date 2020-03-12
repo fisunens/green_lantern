@@ -49,11 +49,9 @@ def multiple_ints(first_value: int, second_value: int) -> int:
         Product of elements
     """
     if isinstance(first_value, int) and isinstance(second_value, int):
-        result = first_value * second_value
-    else:
-        raise TypeError
+        return first_value * second_value
 
-    return result
+    raise TypeError("TypeError")
 
 
 def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
@@ -83,10 +81,10 @@ def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
             print("Not valid input data")
         >>> "Not valid input data"
     """
-
-    result = int(first_value) * int(second_value)
-    return result
-    raise ValueError("Not valid input data")
+    try:
+        return int(first_value) * int(second_value)
+    except ValueError:
+        raise ValueError("Not valid input data")
 
 
 def is_word_in_text(word: str, text: str) -> bool:
@@ -105,8 +103,7 @@ def is_word_in_text(word: str, text: str) -> bool:
         >>> False
 
     """
-    result = word in text
-    return result
+    return word in text
 
 
 def some_loop_exercise() -> list:
@@ -115,10 +112,8 @@ def some_loop_exercise() -> list:
     """
     my_list = []
     for i in range(13):
-        if i == 6:
-            pass
-        elif i == 7:
-            pass
+        if i == 6 or i == 7:
+            continue
         else:
             my_list.append(i)
     return my_list
@@ -168,4 +163,14 @@ def simple_sort(data: List[int]) -> List[list]:
         simple_sort([2, 9, 6, 7, 3, 2, 1])
         >>> [1, 2, 2, 3, 6, 7, 9]
     """
-    return sorted(data)
+    for i in range(len(data)):
+        swapped = False
+        j = 0
+        while j < len(data) - 1:
+            if data[j] > data[j + 1]:
+                data[j], data[j + 1] = data[j + 1], data[j]
+                swapped = True
+            j = j + 1
+        if not swapped:
+            break
+    return data
