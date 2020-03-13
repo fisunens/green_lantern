@@ -128,13 +128,12 @@ def remove_from_list_all_negative_numbers(data: List[int]) -> list:
         remove_from_list_all_negative_numbers([1, 5, -7, 8, -1])
         >>> [1, 5, 8]
     """
-    data2 = []
-    a = len(data)
-    for i in range(0, a):
-        if data[i] > 0:
-            data2.append(data[i])
+    new_data = []
+    for i in data:
+        if i > 0:
+            new_data.append(i)
 
-    return data2
+    return new_data
 
 
 def alphabet() -> dict:
