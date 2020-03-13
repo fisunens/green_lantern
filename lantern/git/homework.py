@@ -159,14 +159,13 @@ def simple_sort(data: List[int]) -> List[list]:
         simple_sort([2, 9, 6, 7, 3, 2, 1])
         >>> [1, 2, 2, 3, 6, 7, 9]
     """
-    for i in range(len(data)):
-        swapped = False
-        j = 0
-        while j < len(data) - 1:
-            if data[j] > data[j + 1]:
-                data[j], data[j + 1] = data[j + 1], data[j]
-                swapped = True
-            j = j + 1
-        if not swapped:
+    while True:
+        nothing_swapped, i = True, 0
+        while i < len(data) - 1:
+            if data[i] > data[i + 1]:
+                data[i], data[i + 1] = data[i + 1], data[i]
+                nothing_swapped = False
+            i += 1
+        if nothing_swapped:
             break
     return data
