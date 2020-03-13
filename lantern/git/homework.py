@@ -131,10 +131,9 @@ def remove_from_list_all_negative_numbers(data: List[int]) -> list:
     data2 = []
     a = len(data)
     for i in range(0, a):
-        if data[i] < 0:
-            pass
-        else:
+        if data[i] > 0:
             data2.append(data[i])
+
     return data2
 
 
