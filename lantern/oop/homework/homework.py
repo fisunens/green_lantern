@@ -39,31 +39,54 @@ class Cat:
     """
 
     def __init__(self, age):
-        pass
+        self.age = age
+        self.saturation_level = 50
+        self.average_speed = self._set_average_speed()
 
     def eat(self, product):
-        pass
+        if product == 'fodder':
+            self.saturation_level = self._increase_saturation_level(10)
+        if product == 'apple':
+            self.saturation_level = self._increase_saturation_level(5)
+        if product == 'milk':
+            self.saturation_level = self._increase_saturation_level(2)
 
     def _reduce_saturation_level(self, value):
-        pass
+        return 0 if self.saturation_level - value <= 0 else self.saturation_level - value
 
     def _increase_saturation_level(self, value):
-        pass
+        return 100 if self.saturation_level + value >= 100 else self.saturation_level + value
 
     def _set_average_speed(self):
-        pass
+        if self.age <= 7:
+            return 12
+        elif self.age in range(8, 12):
+            return 9
+        elif self.age > 10:
+            return 6
 
     def run(self, hours):
-        pass
+        ran_km = self.average_speed * hours
+        if ran_km <= 25:
+            self.saturation_level = self._reduce_saturation_level(2)
+        elif ran_km in range(26, 51):
+            self.saturation_level = self._reduce_saturation_level(5)
+        elif ran_km in range(51, 101):
+            self.saturation_level = self._reduce_saturation_level(15)
+        elif ran_km in range(101, 201):
+            self.saturation_level = self._reduce_saturation_level(25)
+        elif ran_km > 200:
+            self.saturation_level = self._reduce_saturation_level(50)
+        return f'Your cat ran {ran_km} kilometers'
 
     def get_saturation_level(self):
-        pass
+        return 'Your cat is died :(' if self.saturation_level <= 0 else self.saturation_level
 
     def get_average_speed(self):
-        pass
+        return self.average_speed
 
 
-class Cheetah:
+class Cheetah(Cat):
     """
     * Inherit from class Cat
 
@@ -77,6 +100,20 @@ class Cheetah:
       if age grosser 15(not including) return 40
 
     """
+
+    def eat(self, product):
+        if product == 'gazelle':
+            self.saturation_level == self._increase_saturation_level(30)
+        if product == 'rabbit':
+            self.saturation_level == self._increase_saturation_level(15)
+
+    def _set_average_speed(self):
+        if self.age <= 5:
+            return 90
+        elif self.age in range(5, 16):
+            return 75
+        elif self.age > 16:
+            return 40
 
 
 class Wall:
@@ -95,13 +132,16 @@ class Wall:
     """
 
     def __init__(self, width, height):
-        pass
+        self.width = width
+        self.height = height
 
     def wall_square(self):
-        pass
+        return self.width * self.height
 
     def number_of_rolls_of_wallpaper(self, roll_width_m, roll_length_m):
-        pass
+        count_of_lines_in_roll = int(roll_length_m / self.height)
+        count_of_lines = self.width / roll_width_m
+        return count_of_lines / count_of_lines_in_roll
 
 
 class Roof:
@@ -115,11 +155,19 @@ class Roof:
 
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, width, height, roof_type):
+        self.width = width
+        self.height = height
+        self.roof_type = roof_type
 
     def roof_square(self):
-        pass
+        if self.roof_type == 'gable':
+            return self.width * self.height * 2
+        elif self.roof_type == 'single-pitch':
+            return self.width * self.height
+        else:
+            raise ValueError
+            return 'Sorry there is only two types of roofs'
 
 
 class Window:
