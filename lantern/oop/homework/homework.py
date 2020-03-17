@@ -178,11 +178,12 @@ class Window:
 
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
 
     def window_square(self):
-        pass
+        return self.width * self.height
 
 
 class Door:
@@ -203,20 +204,29 @@ class Door:
 
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self._wood_price = 10
+        self._metal_price = 3
 
     def door_square(self):
-        pass
+        return self.width * self.height
 
-    def door_price(self):
-        pass
+    def door_price(self, material):
+        if material == 'wood':
+            return self.door_square() * self._wood_price
+        elif material == 'metal':
+            return self.door_square() * self._metal_price
+        else:
+            raise ValueError
+            "Sorry we don't have such material"
 
-    def update_wood_price(self):
-        pass
+    def update_wood_price(self, new_price):
+        self._wood_price = new_price
 
-    def update_metal_price(self):
-        pass
+    def update_metal_price(self, new_price):
+        self._metal_price = new_price
 
 
 class House:
