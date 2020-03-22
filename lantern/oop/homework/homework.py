@@ -46,9 +46,9 @@ class Cat:
     def eat(self, product):
         if product == 'fodder':
             self.saturation_level = self._increase_saturation_level(10)
-        if product == 'apple':
+        elif product == 'apple':
             self.saturation_level = self._increase_saturation_level(5)
-        if product == 'milk':
+        elif product == 'milk':
             self.saturation_level = self._increase_saturation_level(2)
 
     def _reduce_saturation_level(self, value):
@@ -104,7 +104,7 @@ class Cheetah(Cat):
     def eat(self, product):
         if product == 'gazelle':
             self.saturation_level = self._increase_saturation_level(30)
-        if product == 'rabbit':
+        elif product == 'rabbit':
             self.saturation_level = self._increase_saturation_level(15)
 
     def _set_average_speed(self):
@@ -345,13 +345,13 @@ class House:
         return self.__door.door_price(materials)
 
     def update_wood_price(self, new_wood_price):
-        self.__door._wood_price = new_wood_price
+        self.__door.update_wood_price(new_wood_price)
 
     def update_metal_price(self, new_metal_price):
-        self.__door._metal_price = new_metal_price
+        self.__door.update_metal_price(new_metal_price)
 
     def get_roof_square(self):
-        return  self.__roof.roof_square()
+        return self.__roof.roof_square()
 
     def get_walls_square(self):
         sum_of_all_walls_square = 0
