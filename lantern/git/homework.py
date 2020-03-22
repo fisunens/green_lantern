@@ -159,4 +159,6 @@ def simple_sort(data: List[int]) -> List[list]:
             i += 1
         if nothing_swapped:
             break
+            
     return data
+
