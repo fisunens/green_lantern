@@ -142,6 +142,7 @@ def simple_sort(data: List[int]) -> List[list]:
         >>> [1, 2, 2, 3, 6, 7, 9]
     """
 
+
     sorted_list = []
     new_data = data.copy()
     while new_data:
@@ -153,3 +154,4 @@ def simple_sort(data: List[int]) -> List[list]:
         new_data.remove(minimum)
 
     return sorted_list
+
