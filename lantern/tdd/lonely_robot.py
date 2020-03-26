@@ -33,6 +33,16 @@ class Robot:
         elif self.direction == "W":
             self.y = self.y - 1
 
+    def move_backward(self):
+        if self.direction == "N":
+            self.x = self.x - 1
+        elif self.direction == "E":
+            self.y = self.y - 1
+        elif self.direction == "S":
+            self.x = self.x + 1
+        elif self.direction == "W":
+            self.y = self.y + 1
+
 
 class MissAsteroidError(Exception):
     pass
