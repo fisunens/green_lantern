@@ -60,3 +60,20 @@ class TestRobotMove:
         robot = Robot(self.x, self.y, self.asteroid, current_direction)
         robot.turn_right()
         assert robot.direction == expected_direction
+
+    @pytest.mark.parametrize(
+        "direction, move_x, move_y",
+        [
+            ("N", 11, 15),
+            ("E", 10, 16),
+            ("S", 9, 15),
+            ("W", 10, 14)
+        ]
+    )
+    def test_move_forward(self, direction, move_x, move_y):
+        x, y = 10, 15
+        asteroid = Asteroid(x, y)
+        robot = Robot(self.x, self.y, asteroid, direction)
+        robot.move_forward()
+        assert robot.x == move_x
+        assert robot.y == move_y

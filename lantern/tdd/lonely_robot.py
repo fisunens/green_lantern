@@ -23,6 +23,16 @@ class Robot:
         turns = dict(E="S", S="W", W="N", N="E")
         self.direction = turns[self.direction]
 
+    def move_forward(self):
+        if self.direction == "N":
+            self.x = self.x + 1
+        elif self.direction == "E":
+            self.y = self.y + 1
+        elif self.direction == "S":
+            self.x = self.x - 1
+        elif self.direction == "W":
+            self.y = self.y - 1
+
 
 class MissAsteroidError(Exception):
     pass
