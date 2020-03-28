@@ -1,12 +1,12 @@
 import pytest
-from lonely_robot import Robot, Asteroid, MissAsteroidError
+from lonely_robot import Robot, Asteroid, MissAsteroidError, RobotFallsError
 
 
 class TestRobotCreation:
     def test_parameters(self):
         x, y = 10, 15
-        asteroid = Asteroid(x, y)
-        direction = "E"
+        asteroid = Asteroid(x + 15, y + 15)
+        direction = "N"
         robot = Robot(x, y, asteroid, direction)
         assert robot.x == 10
         assert robot.y == 15
@@ -24,14 +24,14 @@ class TestRobotCreation:
     def test_check_if_robot_on_asteroid(self, asteroid_size, robot_coordinates):
         with pytest.raises(MissAsteroidError):
             asteroid = Asteroid(*asteroid_size)
-            Robot(*robot_coordinates, asteroid, "W")
+            Robot(*robot_coordinates, asteroid, "N")
 
 
 class TestRobotMove:
 
     def setup(self):
         self.x, self.y = 10, 15
-        self.asteroid = Asteroid(self.x, self.y)
+        self.asteroid = Asteroid(self.x + 15, self.y + 15)
 
     @pytest.mark.parametrize(
         "current_direction, expected_direction",
@@ -71,9 +71,7 @@ class TestRobotMove:
         ]
     )
     def test_move_forward(self, direction, move_x, move_y):
-        x, y = 10, 15
-        asteroid = Asteroid(x, y)
-        robot = Robot(self.x, self.y, asteroid, direction)
+        robot = Robot(self.x, self.y, self.asteroid, direction)
         robot.move_forward()
         assert robot.x == move_x
         assert robot.y == move_y
@@ -88,9 +86,9 @@ class TestRobotMove:
         ]
     )
     def test_move_backward(self, direction, move_x, move_y):
-        x, y = 10, 15
-        asteroid = Asteroid(x, y)
-        robot = Robot(self.x, self.y, asteroid, direction)
+        robot = Robot(self.x, self.y, self.asteroid, direction)
         robot.move_backward()
         assert robot.x == move_x
         assert robot.y == move_y
+
+

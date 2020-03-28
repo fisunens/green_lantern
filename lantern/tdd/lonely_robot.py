@@ -10,6 +10,7 @@ class Robot:
         self.y = y
         self.direction = direction
         self.asteroid = asteroid
+
         if self.x > self.asteroid.x:
             raise MissAsteroidError()
         if self.y > self.asteroid.y:
@@ -25,24 +26,36 @@ class Robot:
 
     def move_forward(self):
         if self.direction == "N":
-            self.x = self.x + 1
+            self.x += 1
         elif self.direction == "E":
-            self.y = self.y + 1
+            self.y += 1
         elif self.direction == "S":
-            self.x = self.x - 1
+            self.x -= 1
         elif self.direction == "W":
-            self.y = self.y - 1
+            self.y -= 1
+        if self.x > self.asteroid.x or self.y > self.asteroid.y:
+            raise RobotFallsError()
+        else:
+            return self.x, self.y
 
     def move_backward(self):
         if self.direction == "N":
-            self.x = self.x - 1
+            self.x -= 1
         elif self.direction == "E":
-            self.y = self.y - 1
+            self.y -= 1
         elif self.direction == "S":
-            self.x = self.x + 1
+            self.x += 1
         elif self.direction == "W":
-            self.y = self.y + 1
+            self.y += 1
+        if self.x > self.asteroid.x or self.y > self.asteroid.y:
+            raise RobotFallsError()
+        else:
+            return self.x, self.y
 
 
 class MissAsteroidError(Exception):
+    pass
+
+
+class RobotFallsError(Exception):
     pass
