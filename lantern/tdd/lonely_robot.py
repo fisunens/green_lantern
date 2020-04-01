@@ -59,4 +59,3 @@ class MissAsteroidError(Exception):
 
 class RobotFallsError(Exception):
     pass
-

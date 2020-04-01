@@ -32,7 +32,7 @@ class Cat:
       return text like this: f"Your cat ran {ran_km} kilometers"
 
     * Implement get_saturation_level and return saturation_level
-      if saturation_level eq 0 return text like this: "Your cat is dead :("
+      if saturation_level eq 0 return text  like this: "Your cat is dead :("
 
     * Implement get_average_sped and return average_speed
 

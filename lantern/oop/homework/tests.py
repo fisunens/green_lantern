@@ -168,4 +168,3 @@ class TestHouse:
         expected_res = 115
 
         assert actual_res == expected_res
-

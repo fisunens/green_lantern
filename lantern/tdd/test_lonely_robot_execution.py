@@ -90,6 +90,3 @@ class TestRobotMove:
         robot.move_backward()
         assert robot.x == move_x
         assert robot.y == move_y
-
-
-
