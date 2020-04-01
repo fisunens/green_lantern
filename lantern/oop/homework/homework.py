@@ -34,7 +34,7 @@ class Cat:
     * Implement get_saturation_level and return saturation_level
       if saturation_level eq 0 return text like this: "Your cat is dead :("
 
-    * Implement get_average_speed and return average_speed
+    * Implement get_average_sped and return average_speed
 
     """
 
