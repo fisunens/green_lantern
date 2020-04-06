@@ -19,7 +19,28 @@ def task_1_add_new_record_to_db(con) -> None:
     Returns: 92 records
 
     """
-    pass
+    new_customer = {
+        'customer_name': 'Thomas',
+        'contactname': 'David',
+        'address': 'Some Address',
+        'city': 'London',
+        'postalcode': '774',
+        'country': 'Singapore',
+    }
+    cursor = con.cursor()
+    cursor.execute(
+        "INSERT INTO customers (CustomerName, ContactName,"
+        "Address, City, PostalCode, Country)"
+        "VALUES (%(customer_name)s, %(contactname)s, %(address)s,"
+        "%(city)s, %(postalcode)s, %(country)s);",
+        {**new_customer}
+    )
+    con.commit()
+    cursor.execute(
+        "SELECT * "
+        "FROM customers;"
+    )
+    return cursor.fetchall()
 
 
 def task_2_list_all_customers(cur) -> list:
@@ -32,7 +53,11 @@ def task_2_list_all_customers(cur) -> list:
     Returns: 91 records
 
     """
-    pass
+    cur.execute(
+        "SELECT * "
+        "FROM customers;"
+    )
+    return cur.fetchall()
 
 
 def task_3_list_customers_in_germany(cur) -> list:
@@ -44,7 +69,14 @@ def task_3_list_customers_in_germany(cur) -> list:
 
     Returns: 11 records
     """
-    pass
+    country = 'Germany'
+    cur.execute(
+        "SELECT * "
+        "FROM customers "
+        "WHERE Country=%s;",
+        (country, )
+    )
+    return cur.fetchall()
 
 
 def task_4_update_customer(con):
@@ -56,7 +88,20 @@ def task_4_update_customer(con):
     Returns: 91 records with updated customer
 
     """
-    pass
+    customer_name = 'Johnny Depp'
+    cursor = con.cursor()
+    cursor.execute(
+        "UPDATE customers "
+        "SET CustomerName=%s "
+        "WHERE CustomerID=1;",
+        (customer_name,)
+    )
+    con.commit()
+    cursor.execute(
+        "SELECT * "
+        "FROM customers;"
+    )
+    return cursor.fetchall()
 
 
 def task_5_delete_the_last_customer(con) -> None:
@@ -66,7 +111,14 @@ def task_5_delete_the_last_customer(con) -> None:
     Args:
         con: psycopg connection
     """
-    pass
+    cursor = con.cursor()
+    cursor.execute(
+        "DELETE "
+        "FROM customers "
+        "WHERE CustomerID "
+        "IN (SELECT MAX(CustomerID) FROM customers);"
+    )
+    con.commit()
 
 
 def task_6_list_all_supplier_countries(cur) -> list:
@@ -79,7 +131,11 @@ def task_6_list_all_supplier_countries(cur) -> list:
     Returns: 29 records
 
     """
-    pass
+    cur.execute(
+        "SELECT Country "
+        "FROM suppliers;"
+    )
+    return cur.fetchall()
 
 
 def task_7_list_supplier_countries_in_desc_order(cur) -> list:
@@ -92,7 +148,13 @@ def task_7_list_supplier_countries_in_desc_order(cur) -> list:
     Returns: 29 records in descending order
 
     """
-    pass
+    cur.execute(
+        "SELECT Country "
+        "FROM suppliers "
+        "ORDER BY Country "
+        "DESC;"
+    )
+    return cur.fetchall()
 
 
 def task_8_count_customers_by_city(cur):
@@ -105,7 +167,15 @@ def task_8_count_customers_by_city(cur):
     Returns: 69 records in descending order
 
     """
-    pass
+    cur.execute(
+        "SELECT DISTINCT "
+        "COUNT(City), City "
+        "FROM customers "
+        "GROUP BY City "
+        "ORDER BY count "
+        "DESC;"
+    )
+    return cur.fetchall()
 
 
 def task_9_count_customers_by_country_with_than_10_customers(cur):
