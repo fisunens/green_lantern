@@ -1,6 +1,5 @@
-from flask import Flask, jsonify, request
-
 import inject
+from flask import Flask, jsonify, request
 
 
 class NoSuchUserError(Exception):
@@ -13,7 +12,7 @@ app = Flask(__name__)
 
 @app.errorhandler(NoSuchUserError)
 def my_error_handler(e):
-        return jsonify({'error': e.message}), 404
+    return jsonify({'error': e.message}), 404
 
 
 @app.route('/users', methods=['POST'])
