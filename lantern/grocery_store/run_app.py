@@ -1,6 +1,7 @@
-from store_app import app
-from fake_storage import FakeStorage
 import inject
+
+from fake_storage import FakeStorage
+from store_app import app
 
 
 def configure(binder):
@@ -9,7 +10,6 @@ def configure(binder):
 
 
 inject.clear_and_configure(configure)
-
 
 if __name__ == '__main__':
     app.run()
