@@ -1,12 +1,10 @@
-from flask import request
-from flask_restful import Resource, marshal_with
+import json
 
 from db import db
-
-from utils import check_login
-from news.marshal_structure import news_structure
+from flask import request
+from flask_restful import Resource, marshal_with
 from models.news_model import NewsModel
-import json
+from news.marshal_structure import news_structure
 
 
 class News(Resource):
@@ -41,4 +39,3 @@ class News(Resource):
         db.session.delete(post)
         db.session.commit()
         return "Successfully deleted the value"
-

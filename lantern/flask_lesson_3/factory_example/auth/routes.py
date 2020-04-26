@@ -1,6 +1,6 @@
-from flask_restful import Resource
-from flask import session
 from auth.parsers import auth_parser
+from flask import session
+from flask_restful import Resource
 
 user = dict()
 

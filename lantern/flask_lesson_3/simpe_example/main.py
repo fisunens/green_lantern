@@ -1,13 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-PG_USER = "jeniatrofimenko"
-PG_PASSWORD = "password"
+PG_USER = "user_1"
+PG_PASSWORD = "serg22"
 PG_HOST = "localhost"
 PG_PORT = 5432
 DB_NAME = "test_orm"
 SQLALCHEMY_DATABASE_URI = f"postgresql://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{DB_NAME}"
-
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI

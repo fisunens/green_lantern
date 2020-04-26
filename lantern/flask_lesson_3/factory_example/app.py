@@ -1,15 +1,13 @@
 from datetime import timedelta
 
-from flask import Flask
-
-from config import run_config
-from db import db
-
-from news import news
 from auth import auth
-from one_to_many_example import one_to_many
-from many_to_many_example import many_to_many
+from config import run_config
 from create_db import create_db
+from db import db
+from flask import Flask
+from many_to_many_example import many_to_many
+from news import news
+from one_to_many_example import one_to_many
 
 
 def run_app():

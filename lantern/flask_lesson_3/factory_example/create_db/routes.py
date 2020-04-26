@@ -1,5 +1,5 @@
-from flask_restful import Resource
 from db import db
+from flask_restful import Resource
 
 
 class CreateDB(Resource):

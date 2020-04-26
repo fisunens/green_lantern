@@ -10,6 +10,7 @@ def check_login(f):
     if it true you will see the content of your page
 
     """
+
     @wraps(f)
     def wrapper(*args, **kwargs):
         if session.get("logged_in"):
