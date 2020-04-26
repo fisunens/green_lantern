@@ -1,16 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import create_database, drop_database, database_exists
-
-class Config:
-    PG_USER = "cursor"
-    PG_PASSWORD = "very_secret_password"
-    PG_HOST = "localhost"
-    PG_PORT = 5432
-    DB_NAME = "cursor_sqlalchemy_db"
-    SQLALCHEMY_DATABASE_URI = f"postgresql://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{DB_NAME}"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
+from config import Config
 
 db = SQLAlchemy()
 app = Flask(__name__)
@@ -22,5 +13,6 @@ with app.app_context():
         db.create_all()
         print('database exists')
     else:
-        print('database does not exists')
-
+        print(f'database does not exists {db.engine.url}')
+        create_database(db.engine.url)
+        print('database created')
