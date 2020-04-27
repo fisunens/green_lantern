@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import create_database, drop_database, database_exists
 from config import Config
-from populate_data import get_users
+from populate_data import get_users, get_goods
 
 db = SQLAlchemy()
 
@@ -14,6 +14,15 @@ class User(db.Model):
     name = db.Column(db.String(), unique=True, nullable=False)
     email = db.Column(db.String(), unique=True, nullable=False)
     password = db.Column(db.String(), unique=True, nullable=False)
+
+
+class Good(db.Model):
+    __tablename__ = "goods"
+
+    good_id = db.Column(db.Integer, primary_key=True)
+    brand = db.Column(db.String(), unique=False, nullable=False)
+    name = db.Column(db.String(), unique=True, nullable=False)
+    price = db.Column(db.Float, nullable=False)
 
 
 app = Flask(__name__)
@@ -34,4 +43,12 @@ with app.app_context():
     for user in users:
         db.session.add(User(**user))
     db.session.commit()
-    print('Data written in data_base successfully')
+    print('Users written in data_base successfully')
+
+
+with app.app_context():
+    goods = get_goods()
+    for good in goods:
+        db.session.add(Good(**good))
+    db.session.commit()
+    print('Goods written in data_base successfully')
