@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy_utils import create_database, drop_database, database_exists
+from sqlalchemy_utils import create_database, drop_database, database_exists, EmailType
 from config import Config
 from populate_data import get_users, get_goods, get_stores
 
@@ -12,7 +12,7 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), unique=True, nullable=False)
-    email = db.Column(db.String(), unique=True, nullable=False)
+    email = db.Column(EmailType, unique=True, nullable=False)
     password = db.Column(db.String(), unique=True, nullable=False)
 
 
@@ -53,18 +53,18 @@ with app.app_context():
     for user in users:
         db.session.add(User(**user))
     db.session.commit()
-    print('Users written in data_base successfully')
+    print('Users written to database successfully')
 
 with app.app_context():
     goods = get_goods()
     for good in goods:
         db.session.add(Good(**good))
     db.session.commit()
-    print('Goods written in data_base successfully')
+    print('Goods written to database successfully')
 
 with app.app_context():
     stores = get_stores()
     for store in stores:
         db.session.add(Store(**store))
     db.session.commit()
-    print('Stores written in data_base successfully')
+    print('Stores written to database successfully')
