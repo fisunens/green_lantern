@@ -13,3 +13,10 @@ def get_goods():
         reader = csv.DictReader(file)
         goods = [i for i in reader]
     return goods
+
+
+def get_stores():
+    with open('stores.csv', 'r') as file:
+        reader = csv.DictReader(file)
+        stores = [i for i in reader]
+    return stores
