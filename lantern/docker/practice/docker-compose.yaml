@@ -7,6 +7,6 @@ services:
 #    volumes:
 #      - ../services/web/:/usr/src/app/
     ports:
-      - 8000:5000
+      - 8000:50
 #    env_file:
 #      - web/project/.env.dev
