@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_script import Server, Manager
 
 from grocery_store.config import Config
 from grocery_store.routes import users, goods, stores
@@ -19,7 +20,15 @@ def make_db(app):
     db.init_app(app)
     return db
 
+<<<<<<< HEAD
 def make_manager(app):
     manager = Manager(app)
     manager.add_command('runserver', Server)
     return manager
+=======
+
+def make_manager(app):
+    manager = Manager(app)
+    manager.add_command('runserver', Server(host=Config.HOST, port=Config.PORT))
+    return manager
+>>>>>>> 6f0c3857e9ca686bf53e9ceb682f2a2afbfbaa8f
