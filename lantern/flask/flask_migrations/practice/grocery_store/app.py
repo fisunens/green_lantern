@@ -18,3 +18,8 @@ def make_app():
 def make_db(app):
     db.init_app(app)
     return db
+
+def make_manager(app):
+    manager = Manager(app)
+    manager.add_command('runserver', Server)
+    return manager
