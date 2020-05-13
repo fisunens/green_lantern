@@ -3,7 +3,11 @@ __pycache__/
 *.pyc
 .idea/
 <<<<<<< HEAD
+<<<<<<< HEAD
 env/
 =======
 *.egg-info/
 >>>>>>> 049fc8b2302498059dcc8c86ca6e86982765f5ec
+=======
+*.egg-info/
+>>>>>>> 07722339c99dd33be2e3cb7e7e17979304143f23

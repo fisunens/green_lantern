@@ -14,8 +14,6 @@ class Goods(Resource):
                 return marshal(good, goods_structure)
             return f"No such good with id: {good_id}"
         return marshal(Good.query.all(), goods_structure)
-<<<<<<< HEAD
-=======
 
     def post(self):
         good = Good(**request.json)
@@ -36,4 +34,3 @@ class Goods(Resource):
         db.session.delete(good)
         db.session.commit()
         return f"Successfully deleted User with id: {good_id}"
->>>>>>> 07722339c99dd33be2e3cb7e7e17979304143f23
