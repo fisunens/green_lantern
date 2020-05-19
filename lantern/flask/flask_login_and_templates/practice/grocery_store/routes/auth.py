@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from grocery_store.database import db
 from grocery_store.models import User
-from flask_login import login_user
+from flask_login import login_user, login_required
 
 auth = Blueprint('auth', __name__)
 
@@ -13,6 +13,7 @@ def login():
 
 
 @auth.route('/login', methods=['POST'])
+@login_required
 def login_post():
     email = request.form.get('email')
     password = request.form.get('password')
