@@ -31,6 +31,7 @@ def make_manager(app):
     manager.add_command('runserver', Server(host=Config.HOST, port=Config.PORT))
     manager.add_command('db', MigrateCommand)
     manager.add_command('populate', Populate)
+    manager.add_command("populate_orders", PopulateOrders)
     return manager
 
 
