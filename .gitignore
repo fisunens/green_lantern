@@ -10,4 +10,12 @@ env/
 >>>>>>> 049fc8b2302498059dcc8c86ca6e86982765f5ec
 =======
 *.egg-info/
+<<<<<<< HEAD
 >>>>>>> 07722339c99dd33be2e3cb7e7e17979304143f23
+=======
+
+.DS_Store/
+.DS_Store
+./**/.data/
+lantern/django/django_intro/docker/envs/.**
+>>>>>>> 6e40987e0fe221ca5c8e8b4ae6a719d7f2d2eb26
